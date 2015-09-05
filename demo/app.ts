@@ -9,7 +9,7 @@ import {
 
 import {HomeComponent} from './home'
 import {AboutComponent} from './about'
-console.log(UX_ROUTER_DIRECTIVES)
+
 @Component({
   selector: 'demo-app',
   bindings: []
