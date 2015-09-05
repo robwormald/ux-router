@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import 'es6-shim'
-import {Component, View, bootstrap} from 'angular2/angular2'
+import {Component, View, LifecycleEvent, bootstrap} from 'angular2/angular2'
 import {
   UxRouter,
   UX_ROUTER_BINDINGS,
@@ -12,13 +12,14 @@ import {AboutComponent} from './about'
 
 @Component({
   selector: 'demo-app',
-  bindings: []
+  bindings: [],
+  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
     <div>Demo App </div>
     <div>
-     <a href="/#/home">Home</a>
+     <a href="/#/">Home</a>
      <a href="/#/about">About</a>
     </div>
     <ux-view></ux-view>
@@ -26,10 +27,12 @@ import {AboutComponent} from './about'
   directives: [UX_ROUTER_DIRECTIVES]
 })
 export class DemoApp {
-  constructor(router: UxRouter){
-    router.route('/home',{component: HomeComponent});
+  constructor(public router: UxRouter){
+    router.route('/',{component: HomeComponent});
     router.route('/about',{component: AboutComponent});
-    router.start();
+  }
+  onInit(){
+    this.router.start()
   }
 }
 
