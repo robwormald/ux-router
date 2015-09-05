@@ -54,11 +54,12 @@ export class UxRouter {
     this.routeRecognizer.add([{path: path, handler: handler}]);
   }
   
-  start(startPath?:string){
+  start(startPath = '/'){
+    
     this.listener.changes
-      .startWith(startPath || window.location.href)
       .map(url => url.split('#'))
       .map(([root,path]) => path)
+      .startWith(startPath)
       .map(path => this.matchPath(path))
       .subscribe(handler => this.loadComponent(handler))
   }
@@ -101,6 +102,11 @@ export class UxView {
   showComponent(component){
     this.loader.loadAsRoot(component, VIEW_SELECTOR);
   }
+}
+
+export const Resolve = (...bindings) => component => {
+  console.log(bindings)
+  component._resolve = component._resolve || new Map();
 }
 
 export const UX_ROUTER_BINDINGS = [
