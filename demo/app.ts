@@ -3,7 +3,6 @@ import 'es6-shim'
 import {Component, View, bootstrap} from 'angular2/angular2'
 import {
   UxRouter,
-  State,
   UX_ROUTER_BINDINGS,
   UX_ROUTER_DIRECTIVES
  } from 'ux-router'
