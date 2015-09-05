@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
-    "module": "system"
-  }
+    "module": "system",
+    "experimentalDecorators": true,
+    "target": "es5"
+  },
+  "files": [
+    "src/ux_router.ts",
+    "demo/app.ts",
+    "node_modules/angular2/ts/angular2.ts"
+  ]
 }
